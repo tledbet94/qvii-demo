@@ -1,0 +1,42 @@
+
+
+
+.word-button, .word-btn {
+  display: inline-block;
+  font-size: 32px;
+  line-height: 1;
+  color: #ffffff;
+  border-radius: 10px;
+  border-width: 2px;
+  border-style: outset;   /* flips to inset when pressed */
+  cursor: pointer;
+  white-space: nowrap;
+  margin: 2px;
+  transition: transform 0.05s, border 0.05s;
+}
+
+/* pressed + greyed + disabled (single class) */
+.word-clicked {
+  transform: translateY(2px);
+  border-style: inset !important;
+  opacity: 0.45;
+  filter: grayscale(1);
+  pointer-events: none;
+  cursor: default;
+}
+
+
+.word-button         { background: #838383; border-color: #a0a0a0; }
+
+.word-button-greyed {
+  opacity: 0.4;
+  pointer-events: none;   
+}
+
+.w-button-container {
+  background-color: #dbcfb1;
+  border: inset 5px #d6c7a3;
+  margin: 4px;
+  text-align: left;
+  width: 60%;
+}

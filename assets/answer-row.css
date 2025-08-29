@@ -1,0 +1,10 @@
+/* === central flex wrapper for the answer letters === */
+.answer-row {
+    display: flex;
+    justify-content: center;   /* horizontal centering */
+    align-items: center;       /* vertical centering */
+    flex-wrap: wrap;           /* allow long names to wrap to a new line */
+    gap: 5px;                  /* space between individual tiles */
+    margin: 0 auto;            /* keep row centred in parent */
+    padding: 4px 0;            /* a little breathing room above/below */
+  }

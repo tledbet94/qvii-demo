@@ -1,0 +1,118 @@
+ .base-letter {
+    display: flex;
+    font-size: 42px;
+    font-weight: 300;
+    line-height: 0;
+    color: #6a6461; 
+    text-align: center;
+    transition: color 0.3s ease;
+    text-shadow:
+      0px 0px 1px #8f4d57
+  }
+
+  .base-letter-initials {
+    display: flex;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 0;
+    color: #6a6461; 
+    text-align: center;
+    transition: color 0.3s ease;
+    text-shadow:
+      0.5px 0.5px 0px #b95977
+  }
+
+
+  .initials-question {
+    color: white;
+    font-weight: 500;
+    font-size: 26px;
+    letter-spacing: 0.1em;
+    display: inline-block;
+
+    /* gentle color+glow cycle */
+    animation: soft-glow 4s ease-in-out infinite;
+  }
+
+  @keyframes soft-glow {
+    0%,
+    100% {
+      color: var(--q-base);
+      text-shadow: 0 0 1px var(--q-base), 0 0 2px var(--q-base);
+    }
+    50% {
+      color: var(--q-lite);
+      text-shadow: 0 0 2px var(--q-lite), 0 0 4px var(--q-lite);
+    }
+  }
+
+  /* Accessibility: respect reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    .initials-question { animation: none; }
+  }
+
+  .base-letter-small {
+    display: inline-block;  /* or use block if you want it on its own line */
+    font-size: 32px;
+    font-weight: 300;
+    line-height: 1.2;
+    color: grey;
+    text-align: center;
+    white-space: normal;  /* allow wrapping */
+    word-break: break-word;  /* optional: breaks long strings */
+    text-shadow: 0px 0px 1px #8f4d57;
+    transition: color 0.3s ease;
+    margin-left: 30px;
+    margin-right: 30px;
+  }
+
+  .base-letter-week {
+    display: inline-block;  /* or use block if you want it on its own line */
+    font-size: 18px;
+    font-weight: 300;
+    line-height: 1;
+    color: #6a6461;
+    text-align: center;
+    white-space: normal;  /* allow wrapping */
+    word-break: break-word;  /* optional: breaks long strings */
+    text-shadow: 0px 0px 1px #8f4d57;
+    transition: color 0.3s ease;
+    margin-left: 47px;
+  }
+
+  .hidden-letter {
+    color: transparent;         /* hides text but keeps space */
+    text-shadow: none;          /* prevent any ghost glow */
+    pointer-events: none;       /* optional: disable interaction */
+  }
+
+/* player name text  ─────────────────────────────────── */
+.base-letter-player {
+  /* don’t make this a flex container; the outer box will handle centering */
+  display: block;
+  font-size: 36px;
+  font-weight: 600;
+  line-height: 1;
+  color: #838383;
+
+  /* 🔑 remove default paragraph margins */
+  margin: 0;                 /* ← this alone fixes the tall box */
+}
+
+/* outset pill  ───────────────────────────────────────── */
+.outset-header-container {
+  border: outset 3px #e6d9bd;
+  background-color: #dbcfb1;
+
+  /* make the pill itself a flex box */
+  display: flex;
+  align-items: center;       /* vertical centering */
+  justify-content: center;   /* horizontal centering */
+
+  padding: 0 20px;           /* horizontal padding only */
+  margin: 0 auto 12px;       /* center + small gap below */
+
+  width: max-content;        /* hugs the text */
+  border-radius: 50px;
+  box-shadow: 2px 2px 6px rgba(0,0,0,0.1);
+}

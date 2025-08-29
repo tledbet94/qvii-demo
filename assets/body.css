@@ -1,0 +1,58 @@
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  font-family: "Crimson Pro", serif;
+}
+
+#base-background {
+  background-image: url("/assets/demo-tile.png");
+  background-size: auto;
+  background-position: center;
+  background-repeat: repeat;
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -2;
+  pointer-events: none;
+}
+
+:root {
+  --card-url: url("/assets/demo-background.png");
+  --top-pad: clamp(16px, 6vh, 72px);
+}
+
+#frame-wrapper {
+  background-image: var(--card-url);
+  background-size: auto 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  background-color: transparent !important;
+  overflow: hidden;
+}
+
+.card-stage {
+  width: min(1000px, 82vw);
+  max-width: 100%;
+  background: none !important;
+  margin-top: var(--top-pad);
+  padding: clamp(16px, 1.8vw, 28px);
+}
+
+#page-wrapper {
+  position: relative;
+  z-index: 0;
+}
+
+#frame-wrapper,
+#page-wrapper,
+.card-stage {
+  background-color: transparent !important;
+}
