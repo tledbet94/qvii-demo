@@ -1,68 +1,79 @@
 /* ------------- Appearance of every answer “tile” ------------- */
-.letter-backdrop {
-  /* visual style (unchanged) */
+/* Put tiles somewhere under .card-stage so cqi/em scaling applies */
+.card-stage .letter-backdrop {
   background-color: #d6c7a3;
-  border: inset 3px #c3b797;
-  margin: 0 0px;
-  border-radius: 7px;
+  border: inset 0.22em #c3b797;   /* was 3px */
+  margin: 0;                      /* avoid stray px gaps */
+  border-radius: 0.45em;          /* was 7px */
   font-weight: 700;
 
-  /* --- NEW: fixed size & centering --- */
-  width: 60px;          /* pick a value that fits your font */
-  height: 62px;         /* same as width → square tile */
-  display: inline-flex;  /* flexbox lets us center the span easily */
+  /* size & centering — em ties to .card-stage font-size */
+  width: 2.5em;                   /* was 60px */
+  height: 3.2em;                  /* was 62px */
+  display: inline-flex;
   justify-content: center;
   align-items: center;
-
-  /* optional: tighter or looser padding if you want space inside */
-  padding: 0px;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-/* Hidden vs revealed */
-.hidden-letter {
-  color: transparent;       /* hide the glyph itself */
+.card-stage .hidden-letter {
+  color: transparent;
   position: relative;
   user-select: none;
 }
-.hidden-letter::before {
-  content: "";              /* simple underscore indicator */
+.card-stage .hidden-letter::before {
+  content: "";
   position: absolute;
   left: 0; right: 0;
   margin: auto;
-  bottom: -0.22em;
+  bottom: -0.22em;                /* was -0.22em already good */
   width: 70%;
-  height: 0.18em;
+  height: 0.18em;                 /* scales with font */
   background: #555;
-  border-radius: 2px;
+  border-radius: 0.12em;          /* was 2px */
 }
-.revealed-letter { color: #ffffff; }   /* white letters on tiles */
+
+.card-stage .revealed-letter { color: #ffffff; }
 
 /* ===== Simple gold plaque ===== */
-.gold-plate {
-  /* size can still be controlled by inline CSS if you like; these are good defaults */
-  width: clamp(340px, 50vw, 700px);
-  height: clamp(38px, 5.2vw, 68px);
+.card-stage .gold-plate {
+  /* Width bound to card width; no viewport px */
+  width: clamp(16em, 70cqi, 38em);   /* was clamp(340px, 50vw, 700px) */
+  height: clamp(2.4em, 6cqi, 4.2em); /* was clamp(38px, 5.2vw, 68px) */
 
-  margin: 6px auto 10px;
-  border-radius: 12px;
-
-  /* single-color gold (no bevel/texture) */
-  background: #caa85a;                  /* pick your gold */
-  border: 2px solid #a9862d;
+  margin: 0.5em auto 0.8em;
+  border-radius: 0.75em;
+  background: #caa85a;
+  border: 0.14em solid #a9862d;
 
   display: flex;
   align-items: center;
   justify-content: center;
   box-sizing: border-box;
 
-  /* keep it visually crisp without heavy effects */
-  box-shadow: 0 2px 6px rgba(0,0,0,.15);
+  box-shadow: 0 0.12em 0.38em rgba(0,0,0,.15);
 }
 
 /* Make the '?' on the plaque look identical to the rest of the text */
-#initials .initials-question {
+.card-stage #initials .initials-question {
   color: inherit;
   font: inherit;
   letter-spacing: inherit;
   text-shadow: inherit;
+}
+
+/* Extra squeeze for very narrow cards (iPhone SE and similar) */
+@container (max-width: 360px) {
+  .card-stage .letter-backdrop {
+    width: 2.6em;
+    height: 3.3em;
+    border-width: 0.18em;
+    border-radius: 0.4em;
+  }
+  .card-stage .gold-plate {
+    width: clamp(14em, 80cqi, 34em);
+    height: clamp(2.2em, 5.5cqi, 3.6em);
+    border-width: 0.12em;
+  }
 }

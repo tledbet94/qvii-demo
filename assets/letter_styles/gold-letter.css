@@ -25,7 +25,7 @@
     color: transparent;
 
     font-weight: 600;
-    font-size: 64px;
+    font-size: 3em;
     
     animation: goldGlow 8s infinite ease-in-out;
 
@@ -53,7 +53,7 @@
 
   font-family: 'Quicksand', sans-serif;
   font-weight: bold;
-  font-size: 128px;
+  font-size: 5em;
   font-style: italic;
   
   /* Combine your existing animation with the new floating animation */

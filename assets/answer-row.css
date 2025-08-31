@@ -1,10 +1,21 @@
 /* === central flex wrapper for the answer letters === */
 .answer-row {
-    display: flex;
-    justify-content: center;   /* horizontal centering */
-    align-items: center;       /* vertical centering */
-    flex-wrap: wrap;           /* allow long names to wrap to a new line */
-    gap: 5px;                  /* space between individual tiles */
-    margin: 0 auto;            /* keep row centred in parent */
-    padding: 4px 0;            /* a little breathing room above/below */
-  }
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.4em;         /* scales with .card-stage font-size */
+  margin: 0 auto;
+  padding: 0.3em 0;   /* also scales with font-size */
+}
+
+.answer-tile, .answer-box, .slot {
+  width: 2.2em;
+  height: 2.2em;
+  font-size: 1.1em;
+  line-height: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 0.3em;
+}

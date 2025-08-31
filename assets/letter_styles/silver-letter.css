@@ -21,7 +21,7 @@
     color: transparent;
 
     font-weight: 600;
-    font-size: 64px;
+    font-size: 3em;
 
     animation: silverWave 15s infinite ease-in-out;
 
@@ -46,7 +46,7 @@
 
   font-family: 'Quicksand', sans-serif;
   font-weight: bold;
-  font-size: 128px;
+  font-size: 5em;
   font-style: italic;
 
   /* Combine the wave animation with the floating effect */

@@ -6,6 +6,16 @@ html, body {
   font-family: "Crimson Pro", serif;
 }
 
+/* defaults; JS will overwrite --card-ratio based on the actual PNG dimensions */
+:root {
+  --card-url: url("/assets/demo-background.png");
+  --card-ratio: 0.56;         /* width / height (eg 9:16 ≈ 0.5625). Safe default. */
+  --top-pad: clamp(16px, 6vh, 72px);
+  --vh: 100vh;
+}
+@supports (height: 100svh) { :root { --vh: 100svh; } }
+@supports (height: 100dvh) { :root { --vh: 100dvh; } }
+
 #base-background {
   background-image: url("/assets/demo-tile.png");
   background-size: auto;
@@ -19,29 +29,38 @@ html, body {
   pointer-events: none;
 }
 
-:root {
-  --card-url: url("/assets/demo-background.png");
-  --top-pad: clamp(16px, 6vh, 72px);
-}
-
 #frame-wrapper {
-  background-image: var(--card-url);
-  background-size: auto 100%;
-  background-position: center;
-  background-repeat: no-repeat;
   min-height: 100dvh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  background-color: transparent !important;
   overflow: hidden;
+  position: relative;
 }
 
+/* fixed, full-viewport card art layer */
+#frame-wrapper::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background-image: var(--card-url);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: auto var(--vh);   /* span top→bottom reliably on iOS/desktop */
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* Bind content width to the rendered card width:
+   card_width = viewport_height * card_ratio  */
 .card-stage {
-  width: min(1000px, 82vw);
+  width: min(
+    1000px,
+    82vw,
+    calc(var(--vh) * var(--card-ratio))
+  );
   max-width: 100%;
-  background: none !important;
   margin-top: var(--top-pad);
   padding: clamp(16px, 1.8vw, 28px);
 }
@@ -51,8 +70,15 @@ html, body {
   z-index: 0;
 }
 
+/* ensure no other layer paints the card art */
 #frame-wrapper,
 #page-wrapper,
 .card-stage {
+  background-image: none !important;
   background-color: transparent !important;
+}
+
+.card-stage {
+  container-type: inline-size;
+  font-size: clamp(12px, 2.6cqi, 18px);
 }

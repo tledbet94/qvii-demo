@@ -31,7 +31,7 @@
     color: transparent;
 
     font-weight: 600;
-    font-size: 64px;
+    font-size: 5em;
 
     animation: bronzeShimmer 25s infinite ease-in-out;
 
@@ -48,7 +48,7 @@
 
   font-family: 'Quicksand', sans-serif;
   font-weight: bold;
-  font-size: 128px;
+  font-size: 5em;
   font-style: italic;
 
   animation: bronzeShimmer 15s infinite ease-in-out, bronzeFloat 2s infinite ease-in-out;

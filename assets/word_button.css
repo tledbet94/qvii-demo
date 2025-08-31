@@ -1,23 +1,20 @@
-
-
-
 .word-button, .word-btn {
   display: inline-block;
-  font-size: 32px;
-  line-height: 1;
+  font-size: 1.2em;
+  line-height: 1.05;
   color: #ffffff;
-  border-radius: 10px;
-  border-width: 2px;
-  border-style: outset;   /* flips to inset when pressed */
+  border-radius: 0.6em;
+  border-width: 0.3em;
+  border-style: outset;
   cursor: pointer;
   white-space: nowrap;
-  margin: 2px;
+  margin: 0.1em;
+  padding: 0.1em 0.1em;
   transition: transform 0.05s, border 0.05s;
 }
 
-/* pressed + greyed + disabled (single class) */
 .word-clicked {
-  transform: translateY(2px);
+  transform: translateY(0.12em);
   border-style: inset !important;
   opacity: 0.45;
   filter: grayscale(1);
@@ -25,18 +22,24 @@
   cursor: default;
 }
 
-
-.word-button         { background: #838383; border-color: #a0a0a0; }
+.word-button        { background: #838383; border-color: #a0a0a0; }
 
 .word-button-greyed {
   opacity: 0.4;
-  pointer-events: none;   
+  pointer-events: none;
 }
 
 .w-button-container {
   background-color: #dbcfb1;
-  border: inset 5px #d6c7a3;
-  margin: 4px;
+  border: inset 0.35em #d6c7a3;
+  margin: 0.3em;
   text-align: left;
-  width: 60%;
+  width: clamp(260px, 80cqi, 640px);
+  padding: 0.6em;
+}
+
+@container (max-width: 360px) {
+  .card-stage { font-size: clamp(11px, 2.8cqi, 16px); }
+  .word-button, .word-btn { padding: 0.1em 0.1em; border-radius: 0.5em; }
+  .w-button-container { border-width: 0.3em; padding: 0.5em; }
 }

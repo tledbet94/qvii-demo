@@ -1,28 +1,28 @@
 from dash import Dash, dcc, html
-from layout import layout  # your play-page layout function
+from layout import layout
 from callback import *
 
-app = Dash(__name__, use_pages=False, suppress_callback_exceptions=True)
+app = Dash(
+    __name__,
+    use_pages=False,
+    suppress_callback_exceptions=True,
+    meta_tags=[{"name": "viewport", "content": "width=device-width, initial-scale=1, viewport-fit=cover"}],
+)
 server = app.server
 app.title = "QVII Demo – Play-only"
 
-# Bottom tiled layer
-backdrop_tile = html.Div(id="base-background")
-
-# Foreground background + app content confined inside it
-stage = html.Div(
+app.layout = html.Div(
     [
+        dcc.Location(id="url", refresh=False),
+        html.Div(id="base-background"),
         html.Div(
-            layout(),                 # ← your layout goes here
-            id="page-wrapper",
-            className="card-stage",
-        )
-    ],
-    id="frame-wrapper",
-    className="frame-wrapper",
+            [html.Div(layout(), id="page-wrapper", className="card-stage")],
+            id="frame-wrapper",
+            className="frame-wrapper",
+            # your background callback should keep setting: {"--card-url": "url('/assets/...')"}
+        ),
+    ]
 )
-
-app.layout = html.Div([dcc.Location(id="url", refresh=False), backdrop_tile, stage])
 
 if __name__ == "__main__":
     app.run(debug=True)
